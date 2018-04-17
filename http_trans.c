@@ -95,11 +95,11 @@ int TOOL_hexatosize(const char *s, size_t *d)
         }
         else if(*p >='a' && *p <='f')
         {
-            n+=*p-'a';
+            n+=*p-'a'+10;
         }
         else
         {
-            n+=*p-'A';
+            n+=*p-'A'+10;
         }
         i--;
         p++;
@@ -447,6 +447,7 @@ int http_trans_chunked(HTTP_TRANS* http, char* buf_in, size_t len_in)
                 if (http->chunked_total == 0)
                 {
                     http->status = TRANS_STATUS_FINISH;
+		    break;
                 }
             }
             else
